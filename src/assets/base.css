@@ -1,0 +1,25 @@
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,301,701,300,501,401,901,400&display=swap");
+
+:root {
+    --white: #ffffff;
+    --white-soft: #e1e1e1;
+    --dark: #070707;
+    --gray: #1c1b1b;
+    --gray-soft: #797979;
+    --green: #42c83c;
+    --green-dark: #38b432;
+    --blue: #288ce9;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Satoshi", sans-serif;
+    font-size: 16px;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+    cursor: pointer;
+}
