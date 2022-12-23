@@ -27,10 +27,12 @@ import Button from "./Button.vue";
         </div>
     </div>
     <Button
+        fontSize="22px"
         width="100%"
         height="92px"
-        className="btn__white-big-text"
+        className="btn-green"
         borderRadius="30px"
+        fnName="goToAuth"
         >Continue</Button
     >
 </template>

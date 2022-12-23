@@ -26,5 +26,6 @@ const image = computed(() => images.value[props.imageUrl])
     width: 390px;
     height: 844px;
     border-radius: 43px;
+    overflow: hidden;
 }
 </style>

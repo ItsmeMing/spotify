@@ -1,8 +1,11 @@
 <script setup>
 import {ref, shallowRef, provide} from "vue";
+import {useRouter} from "vue-router";
 import RootComponent from "../components/RootComponent.vue";
 import GetStarted from "../components/GetStarted.vue";
 import ChooseMode from "../components/ChooseMode.vue";
+
+const router = useRouter();
 
 const imageUrl = ref("ArianaGrande");
 const childContent = shallowRef(GetStarted);
@@ -12,7 +15,10 @@ const handleContent = () => {
     childContent.value = ChooseMode;
 };
 
-provide("handleContent", handleContent)
+const goToAuth = () => router.push({name: "authentication"});
+
+provide("handleContent", handleContent);
+provide("goToAuth", goToAuth);
 </script>
 
 <template>
@@ -22,7 +28,7 @@ provide("handleContent", handleContent)
                 <img src="../assets/images/logo.png" />
             </figure>
             <div class="content">
-               <childContent/>
+                <childContent />
             </div>
         </div>
     </RootComponent>

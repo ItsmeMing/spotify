@@ -1,9 +1,15 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import RootComponent from "./RootComponent.vue";
-import Button from "./Button.vue";
+import {provide} from "vue";
+import RootComponent from "../components/RootComponent.vue";
+import AuthIntroduction from "../components/AuthIntroduction.vue";
+// import RegisterSignIn from "../components/RegisterSignIn.vue";
+import Button from "../components/Button.vue";
+import {shallowRef} from "vue";
 
-defineProps(["imageUrl"]);
+const childContent = shallowRef(AuthIntroduction);
+
+provide("child-content", childContent);
 </script>
 
 <template>
@@ -22,8 +28,9 @@ defineProps(["imageUrl"]);
                 </figure>
             </div>
             <div class="content">
-                <slot></slot>
+                <childContent></childContent>
             </div>
+            <img id="billie" src="../assets/images/billie-eilish.png" />
         </div>
     </RootComponent>
 </template>
@@ -35,23 +42,21 @@ defineProps(["imageUrl"]);
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    overflow: hidden;
 
     > * {
         width: calc(11 / 13 * 100%);
         margin: 0 auto;
     }
     .header {
-        position: absolute;
-        top: 0;
-        left: 50%;
+        position: relative;
+        display: flex;
         align-items: center;
+        justify-content: center;
         margin-top: 40px;
-        transform: translateX(-50%);
         button {
             position: absolute;
-            top: 50%;
             left: 0;
-            transform: translateY(-50%);
             img {
                 height: 11.5px;
                 width: auto;
@@ -68,8 +73,26 @@ defineProps(["imageUrl"]);
         }
     }
     .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         text-align: center;
         width: calc(11 / 13 * 100%);
+        height: inherit;
+    }
+    img#billie {
+        position: absolute;
+        z-index: 1;
+        left: calc((1 - (11 / 13)) * -100% * 2.5);
+        top: 100%;
+        width: 453px;
+        height: auto;
+        transform: translateY(-100%) rotate(43.5deg);
     }
 }
 </style>
