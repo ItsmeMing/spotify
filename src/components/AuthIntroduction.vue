@@ -2,10 +2,6 @@
 import Button from "./Button.vue";
 
 const btnWidth = (5 / 11) * 100;
-console.log(btnWidth);
-
-defineProps(["authHeader"]);
-
 </script>
 
 <template>
@@ -30,6 +26,7 @@ defineProps(["authHeader"]);
             height="75px"
             className="btn-transparent"
             borderRadius="30px"
+            fnName="goToSignIn"
             >Sign in</Button
         >
     </div>

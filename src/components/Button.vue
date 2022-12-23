@@ -1,7 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import {inject, ref} from "vue";
+import { useRouter } from "vue-router";
 import Register from "./Register.vue";
+import SignIn from "./SignIn.vue";
 
 defineProps([
     "fontSize",
@@ -11,18 +13,37 @@ defineProps([
     "borderRadius",
     "fnName",
 ]);
+
+const router = useRouter();
+
 const goToChooseMode = inject("handleContent");
 const goToAuth = inject("goToAuth");
+const goBackToGetStarted = () => {
+    router.push({name: "get-started"});
+};
 const childContent = inject("child-content");
-const goToRegister = () => (childContent.value = Register);
+const contentClass = inject("content-class");
+const showBillie = inject("show-billie");
+const goToRegister = () => {
+    childContent.value = Register;
+    contentClass.value = "content";
+    showBillie.value = false;
+};
+
+const goToSignIn = () => {
+    childContent.value = SignIn;
+    contentClass.value = "content";
+    showBillie.value = false;
+}
 
 const fns = ref({
     goToChooseMode: goToChooseMode,
     goToAuth: goToAuth,
+    goBackToGetStarted: goBackToGetStarted,
     goToRegister: goToRegister,
+    goToSignIn: goToSignIn
 });
 const handleFunction = (name) => {
-    console.log(name);
     const fn = fns.value[name];
     fn();
 };
@@ -48,11 +69,13 @@ button {
     background-color: var(--green);
     border: 2px solid transparent;
     transition: all 0.2s linear;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.04);
 }
 
 .btn-green {
     color: var(--white);
     font-weight: 700;
+
     &:hover {
         color: var(--green);
         background-color: transparent;
@@ -76,5 +99,12 @@ button {
     &:hover {
         background: palevioletred;
     }
+}
+
+.btn-blue-text {
+    font-weight: 700;
+    color: var(--blue);
+    width: fit-content;
+    background-color: transparent;
 }
 </style>
