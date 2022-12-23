@@ -1,5 +1,12 @@
 <script setup>
+import {ref, provide} from "vue";
 import Button from "./Button.vue";
+
+const dark = ref();
+const light = ref();
+
+provide("dark", dark);
+provide("light", light);
 </script>
 
 <template>
@@ -11,6 +18,8 @@ import Button from "./Button.vue";
                 height="75px"
                 className="btn__circle-blur"
                 borderRadius="100%"
+                fnName="chooseDark"
+                :btnRef="dark"
                 ><img src="../assets/images/moon.png"
             /></Button>
             <h2>Dark mode</h2>
@@ -21,6 +30,8 @@ import Button from "./Button.vue";
                 height="75px"
                 className="btn__circle-blur"
                 borderRadius="100%"
+                fnName="chooseLight"
+                :btnRef="light"
                 ><img src="../assets/images/sun.png"
             /></Button>
             <h2>Light mode</h2>

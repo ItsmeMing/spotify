@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import {inject, ref} from "vue";
-import { useRouter } from "vue-router";
+import {useRouter} from "vue-router";
 import Register from "./Register.vue";
 import SignIn from "./SignIn.vue";
 
@@ -12,11 +12,28 @@ defineProps([
     "className",
     "borderRadius",
     "fnName",
+    "btnRef",
 ]);
 
 const router = useRouter();
 
 const goToChooseMode = inject("handleContent");
+
+const dark = inject("dark");
+const light = inject("light");
+const chooseDark = () => {
+    console.log(dark.value.classList, light.value.classList);
+    dark.value.classList.remove("selected");
+    light.value.classList.remove("seleted");
+    dark.value.classList.add("selected");
+};
+
+const chooseLight = () => {
+    dark.value.classList.remove("selected");
+    light.value.classList.remove("seleted");
+    light.value.classList.add("selected");
+};
+
 const goToAuth = inject("goToAuth");
 const goBackToGetStarted = () => {
     router.push({name: "get-started"});
@@ -34,14 +51,16 @@ const goToSignIn = () => {
     childContent.value = SignIn;
     contentClass.value = "content";
     showBillie.value = false;
-}
+};
 
 const fns = ref({
     goToChooseMode: goToChooseMode,
+    chooseDark: chooseDark,
+    chooseLight: chooseLight,
     goToAuth: goToAuth,
     goBackToGetStarted: goBackToGetStarted,
     goToRegister: goToRegister,
-    goToSignIn: goToSignIn
+    goToSignIn: goToSignIn,
 });
 const handleFunction = (name) => {
     const fn = fns.value[name];
@@ -51,6 +70,7 @@ const handleFunction = (name) => {
 
 <template>
     <button
+        :ref="btnRef"
         :class="className"
         :style="{
             fontSize: fontSize,
@@ -99,6 +119,10 @@ button {
     &:hover {
         background: palevioletred;
     }
+}
+
+.btn__circle-blur.seleteced {
+    background: palevioletred;
 }
 
 .btn-blue-text {
