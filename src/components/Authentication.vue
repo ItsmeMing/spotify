@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import RootComponent from "./RootComponent.vue";
 import Button from "./Button.vue";
@@ -29,6 +30,7 @@ defineProps(["imageUrl"]);
 
 <style scoped lang="scss">
 #wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -39,9 +41,12 @@ defineProps(["imageUrl"]);
         margin: 0 auto;
     }
     .header {
-        position: relative;
+        position: absolute;
+        top: 0;
+        left: 50%;
         align-items: center;
         margin-top: 40px;
+        transform: translateX(-50%);
         button {
             position: absolute;
             top: 50%;
@@ -65,7 +70,6 @@ defineProps(["imageUrl"]);
     .content {
         text-align: center;
         width: calc(11 / 13 * 100%);
-        margin: 0 auto 70px auto;
     }
 }
 </style>

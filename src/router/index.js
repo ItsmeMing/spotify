@@ -1,19 +1,19 @@
 import {createRouter, createWebHistory} from "vue-router";
-import GetStartedChooseMode from "../components/GetStartedChooseMode.vue";
-import GetStartedOrLogin from "../components/RegisterOrLogin.vue";
+import GetStartedChooseMode from "../views/GetStartedChooseMode.vue";
+import Authentication from "../components/Authentication.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
-            path: "/",
+            path: "/get-started",
             name: "get-started",
             component: GetStartedChooseMode,
         },
         {
             path: "/authentication",
             name: "authentication",
-            component: GetStartedOrLogin
+            component: Authentication
         }
     ],
 });

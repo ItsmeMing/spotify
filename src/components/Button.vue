@@ -1,15 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import {inject} from "vue";
+import {inject, ref} from "vue";
 
 defineProps(["width", "height", "className", "borderRadius", "fnName"]);
 
 const goToChooseMode = inject("handleContent");
-const fns = {goToChooseMode: goToChooseMode};
+const fns = ref({});
+fns.value.goToChooseMode = goToChooseMode;
 const handleFunction = (name) => {
-    console.log(fns)
-    const fn = fns[name];
-    console.log(fn);
+    const fn = fns.value[name];
     fn();
 };
 </script>
@@ -18,7 +17,7 @@ const handleFunction = (name) => {
     <button
         :class="className"
         :style="{width: width, height: height, borderRadius: borderRadius}"
-        @click="handleFunction(click)"
+        @click="handleFunction(fnName)"
     >
         <slot></slot>
     </button>

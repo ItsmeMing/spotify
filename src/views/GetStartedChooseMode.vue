@@ -1,14 +1,14 @@
 <script setup>
 import {ref, shallowRef, provide} from "vue";
-import RootComponent from "./RootComponent.vue";
-import GetStarted from "./GetStarted.vue";
-import ChooseMode from "./ChooseMode.vue";
+import RootComponent from "../components/RootComponent.vue";
+import GetStarted from "../components/GetStarted.vue";
+import ChooseMode from "../components/ChooseMode.vue";
 
-const imageUrl = ref("https://i.imgur.com/5wmGs2H.png");
+const imageUrl = ref("ArianaGrande");
 const childContent = shallowRef(GetStarted);
 
 const handleContent = () => {
-    imageUrl.value = "https://i.imgur.com/4bcbAvv.png";
+    imageUrl.value = "Wallpaper1";
     childContent.value = ChooseMode;
 };
 
