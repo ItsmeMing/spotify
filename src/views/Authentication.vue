@@ -17,12 +17,14 @@ provide("show-billie", showBillie);
 
 <template>
     <RootComponent backgroundColor="#1C1B1B">
-        <div id="wrapper">
-            <Header leftBtn="goBackBtn" centerBtn="logo" :displayOptionsBtn="false"></Header>
-            <Content contentId="content" :className="contentClass">
-                <childContent></childContent>
-            </Content>
-        </div>
+        <Header
+            leftBtn="goBackBtn"
+            centerBtn="logo"
+            :displayOptionsBtn="false"
+        ></Header>
+        <Content contentId="content" :className="contentClass">
+            <childContent></childContent>
+        </Content>D
         <img
             v-if="showBillie"
             id="billie"
@@ -32,23 +34,18 @@ provide("show-billie", showBillie);
 </template>
 
 <style scoped lang="scss">
-#wrapper {
-    position: relative;
-    z-index: 2;
-    justify-content: flex-start !important;
-    overflow: hidden;
-    #content {
-        height: inherit;
-        margin-top: 110px;
-        margin-bottom: 0;
-    }
-    #content.input {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        margin-top: 0;
-    }
+#content {
+    height: inherit;
+    margin-top: 110px;
+    margin-bottom: 0;
 }
+#content.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 0;
+}
+
 img#billie {
     position: absolute;
     z-index: 1;

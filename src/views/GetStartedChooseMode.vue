@@ -23,7 +23,7 @@ provide("goToAuth", goToAuth);
 </script>
 
 <template>
-    <RootComponent :imageUrl="imageUrl">
+    <RootComponent :imageUrl="imageUrl" justifyContent="space-between">
         <figure class="big-logo">
             <img src="../assets/images/logo.png" />
         </figure>
@@ -33,19 +33,16 @@ provide("goToAuth", goToAuth);
     </RootComponent>
 </template>
 
-<style lang="scss">
-#wrapper {
-    justify-content: space-between !important;
-    .big-logo {
-        img {
-            display: block;
-            width: 200px;
-            height: auto;
-            margin: 40px auto 0 auto;
-        }
+<style scoped lang="scss">
+.big-logo {
+    img {
+        display: block;
+        width: 200px;
+        height: auto;
+        margin: 40px auto 0 auto;
     }
-    #content {
-        margin-bottom: 70px;
-    }
+}
+#content {
+    margin-bottom: 70px;
 }
 </style>

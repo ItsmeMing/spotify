@@ -24,7 +24,7 @@
 footer {
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: calc((100vw - 100%) * -0.5);
     width: 100vw;
     background-color: var(--gray-dark);
     ul {

@@ -12,27 +12,11 @@ defineProps([
     "className",
     "borderRadius",
     "fnName",
-    "btnRef",
 ]);
 
 const router = useRouter();
 
 const goToChooseMode = inject("handleContent");
-
-const dark = inject("dark");
-const light = inject("light");
-const chooseDark = () => {
-    console.log(dark.value.classList, light.value.classList);
-    dark.value.classList.remove("selected");
-    light.value.classList.remove("selected");
-    dark.value.classList.add("selected");
-};
-
-const chooseLight = () => {
-    dark.value.classList.remove("selected");
-    light.value.classList.remove("selected");
-    light.value.classList.add("selected");
-};
 
 const goToAuth = inject("goToAuth");
 const goBackToGetStarted = () => {
@@ -55,8 +39,6 @@ const goToSignIn = () => {
 
 const fns = ref({
     goToChooseMode: goToChooseMode,
-    chooseDark: chooseDark,
-    chooseLight: chooseLight,
     goToAuth: goToAuth,
     goBackToGetStarted: goBackToGetStarted,
     goToRegister: goToRegister,
@@ -70,7 +52,6 @@ const handleFunction = (name) => {
 
 <template>
     <button
-        :ref="btnRef"
         :class="className"
         :style="{
             fontSize: fontSize,
