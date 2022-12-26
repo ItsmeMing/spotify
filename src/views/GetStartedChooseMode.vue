@@ -1,7 +1,8 @@
 <script setup>
 import {ref, shallowRef, provide} from "vue";
 import {useRouter} from "vue-router";
-import RootComponent from "../components/RootComponent.vue";
+import RootComponent from "../components/layout/RootComponent.vue";
+import Content from "../components/layout/Content.vue";
 import GetStarted from "../components/GetStarted.vue";
 import ChooseMode from "../components/ChooseMode.vue";
 
@@ -23,24 +24,19 @@ provide("goToAuth", goToAuth);
 
 <template>
     <RootComponent :imageUrl="imageUrl">
-        <div id="wrapper">
-            <figure class="logo">
-                <img src="../assets/images/logo.png" />
-            </figure>
-            <div class="content">
-                <childContent />
-            </div>
-        </div>
+        <figure class="big-logo">
+            <img src="../assets/images/logo.png" />
+        </figure>
+        <Content contentId="content">
+            <childContent />
+        </Content>
     </RootComponent>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
 #wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    .logo {
+    justify-content: space-between !important;
+    .big-logo {
         img {
             display: block;
             width: 200px;
@@ -48,10 +44,8 @@ provide("goToAuth", goToAuth);
             margin: 40px auto 0 auto;
         }
     }
-    .content {
-        text-align: center;
-        width: calc(11 / 13 * 100%);
-        margin: 0 auto 70px auto;
+    #content {
+        margin-bottom: 70px;
     }
 }
 </style>

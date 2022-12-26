@@ -14,7 +14,7 @@ input {
     font-size: 16px;
     width: calc(100% - 60px);
     height: 80px;
-    padding: 0 30px;
+    padding: 0 29px;
     border: 1px solid var(--gray-soft);
     border-radius: 30px;
     background-color: transparent;

@@ -1,0 +1,58 @@
+<!-- eslint-disable vue/multi-word-component-names -->
+<script setup></script>
+
+<template>
+    <div class="song">
+        <div class="song__image">
+            <img src="../assets/images/billie-eilish-3.png" />
+            <img id="play" src="../assets/images/play.png" />
+        </div>
+        <h1 class="song__name">Bad Guy</h1>
+        <p class="song__artist">Billie Eilish</p>
+    </div>
+</template>
+
+<style scoped lang="scss">
+.song {
+    padding-bottom: 10px;
+    > * {
+        color: var(--white);
+    }
+    .song__image {
+        position: relative;
+        width: 147px;
+        height: 185px;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: scale-down;
+            border-radius: 30px;
+        }
+        #play {
+            position: absolute;
+            top: 100%;
+            right: 100%;
+            width: 10.8px;
+            height: auto;
+            padding: 10px;
+            background-color: var(--gray-dark);
+            transform: translate(-100%, -50%);
+            border-radius: 100%;
+        }
+    }
+    .song__name, .song__artist {
+        margin-left: 10px;
+    }
+    .song__name {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 21.6px;
+        margin-top: 15px;
+    }
+    .song__artist {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18.9px;
+    }
+}
+</style>

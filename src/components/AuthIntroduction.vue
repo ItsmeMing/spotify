@@ -5,6 +5,9 @@ const btnWidth = (5 / 11) * 100;
 </script>
 
 <template>
+    <figure class="logo">
+        <img src="../assets/images/logo.png"/>
+    </figure>
     <h1>Enjoy Listening To Music</h1>
     <p>
         Spotify is a proprietary Swedish audio streaming and media services
@@ -33,10 +36,22 @@ const btnWidth = (5 / 11) * 100;
 </template>
 
 <style scoped lang="scss">
+* {
+    text-align: center;
+}
+figure {
+    img {
+        display: block;
+        width: 235px;
+        height: auto;
+        margin: 0 auto;
+    }
+}
 h1 {
     color: var(--white);
     font-weight: 700;
     font-size: 26px;
+    margin-top: 55px;
 }
 
 p {
@@ -44,7 +59,6 @@ p {
     font-weight: 400;
     font-size: 17px;
     line-height: 23px;
-    text-align: center;
     margin: 20px 0 30px 0;
 }
 

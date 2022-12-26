@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from "vue-router";
 import Loading from "../views/Loading.vue";
 import GetStartedChooseMode from "../views/GetStartedChooseMode.vue";
 import Authentication from "../views/Authentication.vue";
+import MainPage from "../views/MainPage.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,11 @@ const router = createRouter({
             path: "/authentication",
             name: "authentication",
             component: Authentication,
+        },
+        {
+            path: "/main-page",
+            name: "main-page",
+            component: MainPage,
         },
     ],
 });

@@ -24,13 +24,13 @@ const light = inject("light");
 const chooseDark = () => {
     console.log(dark.value.classList, light.value.classList);
     dark.value.classList.remove("selected");
-    light.value.classList.remove("seleted");
+    light.value.classList.remove("selected");
     dark.value.classList.add("selected");
 };
 
 const chooseLight = () => {
     dark.value.classList.remove("selected");
-    light.value.classList.remove("seleted");
+    light.value.classList.remove("selected");
     light.value.classList.add("selected");
 };
 
@@ -43,13 +43,13 @@ const contentClass = inject("content-class");
 const showBillie = inject("show-billie");
 const goToRegister = () => {
     childContent.value = Register;
-    contentClass.value = "content";
+    contentClass.value = "input";
     showBillie.value = false;
 };
 
 const goToSignIn = () => {
     childContent.value = SignIn;
-    contentClass.value = "content";
+    contentClass.value = "input";
     showBillie.value = false;
 };
 
@@ -90,6 +90,7 @@ button {
     border: 2px solid transparent;
     transition: all 0.2s linear;
     box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
 }
 
 .btn-green {
@@ -113,6 +114,17 @@ button {
     }
 }
 
+.btn-transparent-no-effect {
+    color: var(--white);
+    font-weight: 700;
+    background-color: transparent;
+    &:hover {
+        color: none;
+        background-color: none;
+        border-color: none;
+    }
+}
+
 .btn__circle-blur {
     background: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(43.5px);
@@ -121,7 +133,7 @@ button {
     }
 }
 
-.btn__circle-blur.seleteced {
+.btn__circle-blur.selected {
     background: palevioletred;
 }
 
