@@ -4,7 +4,7 @@
 <template>
     <div class="song">
         <div class="song__item">
-            <img id="play" src="../assets/images/play.png" />
+            <slot name="left-btn"></slot>
             <div>
                 <h1 class="song__name">Bad Guy</h1>
                 <p class="song__artist">Billie Eilish</p>
@@ -12,7 +12,7 @@
         </div>
         <div class="song__item">
             <p class="song__duration">5:33</p>
-            <img id="heart" src="../assets/images/hearth.png" />
+            <slot name="right-btn"></slot>
         </div>
     </div>
 </template>
@@ -29,15 +29,7 @@
         }
 
         &:last-child {
-            gap: 50px;
-        }
-        #play {
-            align-self: flex-start;
-            width: 13px;
-            height: auto;
-            padding: 12.5px;
-            background-color: var(--gray-dark);
-            border-radius: 100%;
+            gap: 50px;  
         }
         #heart {
             width: 17px;

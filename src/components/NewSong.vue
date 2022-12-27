@@ -1,11 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<script setup></script>
+<script setup>
+
+import PlayBtn from "./header-btns/PlayBtn.vue";
+</script>
 
 <template>
     <div class="song">
         <div class="song__image">
             <img src="../assets/images/billie-eilish-3.png" />
-            <img id="play" src="../assets/images/play.png" />
+            <PlayBtn :width="28" :height="28" imgClass="img-big" />
         </div>
         <h1 class="song__name">Bad Guy</h1>
         <p class="song__artist">Billie Eilish</p>
@@ -28,7 +31,7 @@
             object-fit: scale-down;
             border-radius: 30px;
         }
-        #play {
+        button {
             position: absolute;
             top: 100%;
             right: 100%;
@@ -40,7 +43,8 @@
             border-radius: 100%;
         }
     }
-    .song__name, .song__artist {
+    .song__name,
+    .song__artist {
         margin-left: 10px;
     }
     .song__name {

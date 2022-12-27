@@ -67,6 +67,9 @@ const handleFunction = (name) => {
 
 <style scoped lang="scss">
 button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--green);
     border: 2px solid transparent;
     transition: all 0.2s linear;
@@ -123,5 +126,9 @@ button {
     color: var(--blue);
     width: fit-content;
     background-color: transparent;
+}
+
+.btn-gray-background {
+    background-color: var(--gray-dark);
 }
 </style>

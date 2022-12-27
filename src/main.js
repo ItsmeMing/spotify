@@ -20,10 +20,11 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 /* add icons to the library */
 import {
+    faEllipsis,
     faEllipsisVertical,
     faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faEllipsisVertical, faMagnifyingGlass);
+library.add(faEllipsis, faEllipsisVertical, faMagnifyingGlass);
 
 app.component("FontAwesomeIcon", FontAwesomeIcon).mount("#app");
