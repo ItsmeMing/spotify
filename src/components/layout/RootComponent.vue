@@ -17,32 +17,35 @@ const image = computed(() => images.value[props.imageUrl]);
             backgroundColor: backgroundColor,
         }"
     >
-        <div id="wrapper" :style="{justifyContent: justifyContent}">
-            <slot></slot>
-        </div>
+        <slot></slot>
     </section>
 </template>
 
 <style lang="scss">
 .container {
-    width: 100vw;
-    height: 100vh;
+    width: inherit;
+    min-height: 100vh;
+    height: inherit;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow-y: auto;
+    scrollbar-width: none;
     > * {
         width: calc(11 / 13 * 100%);
         margin: 0 auto;
-    }
-    #wrapper {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        height: 100% !important;
-        //firefox
         scrollbar-width: none;
     }
-    ::-webkit-scrollbar {
-        display: none;
-    }
+    // #wrapper {
+    //     position: relative;
+    //     display: flex;
+    //     flex-direction: column;
+    //     height: 100vh !important;
+    //     overflow: auto;
+    //     //firefox
+    //     scrollbar-width: none;
+    // }
+}
+::-webkit-scrollbar {
+    display: none;
 }
 </style>

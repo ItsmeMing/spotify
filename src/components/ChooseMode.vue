@@ -54,6 +54,7 @@ h1 {
     #dark,
     #light {
         button {
+            margin: 0 auto;
             img {
                 width: 36px;
                 height: auto;

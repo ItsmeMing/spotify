@@ -53,6 +53,7 @@ header {
     gap: 20px;
     flex-direction: column;
     justify-content: center;
+    margin: 20px 0;
 }
 
 footer {
@@ -103,6 +104,7 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-bottom: 50px;
         p {
             font-weight: 700;
             font-size: 14px;

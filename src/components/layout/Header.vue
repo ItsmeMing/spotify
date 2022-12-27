@@ -4,8 +4,14 @@ import {ref, computed} from "vue";
 import GoBackBtn from "../header-btns/GoBackBtn.vue";
 import SearchBtn from "../header-btns/SearchBtn.vue";
 import Logo from "../header-btns/Logo.vue";
+import NowPlaying from "../NowPlaying.vue";
 
-const props = defineProps(["leftBtn", "centerBtn", "displayOptionsBtn"]);
+const props = defineProps([
+    "leftBtn",
+    "centerBtn",
+    "displayOptionsBtn",
+    "headerClassName",
+]);
 
 const leftBtnObj = ref({
     goBackBtn: GoBackBtn,
@@ -14,6 +20,7 @@ const leftBtnObj = ref({
 
 const centerContentObj = ref({
     logo: Logo,
+    nowPlaying: NowPlaying,
 });
 
 const leftBtnContent = computed(() => leftBtnObj.value[props.leftBtn]);
@@ -23,13 +30,11 @@ const centerBtnContent = computed(
 </script>
 
 <template>
-    <header id="header">
+    <header id="header" :class="props.headerClassName">
         <div>
             <leftBtnContent />
         </div>
-        <div>
-            <centerBtnContent />
-        </div>
+        <div><centerBtnContent /></div>
         <div>
             <FontAwesomeIcon
                 icon="fa-solid fa-ellipsis-vertical"
@@ -65,5 +70,11 @@ const centerBtnContent = computed(
             color: var(--white);
         }
     }
+}
+#header.absolute {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 </style>

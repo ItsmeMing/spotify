@@ -12,7 +12,7 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
         </div>
         <h1 class="song__name">Bad Guy</h1>
         <p class="song__artist">Billie Eilish</p>
-    </div>
+    </div>  
 </template>
 
 <style scoped lang="scss">

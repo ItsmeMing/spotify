@@ -1,8 +1,7 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
-<router-view></router-view>
+    <router-view></router-view>
 </template>
 
 <style>
@@ -10,7 +9,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 </style>

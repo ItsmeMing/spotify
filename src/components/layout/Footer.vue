@@ -1,10 +1,16 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<script setup></script>
+<script setup>
+import {inject} from "vue";
+
+defineProps(["displayFooter"]);
+
+const changeLayout = inject("changeLayout");
+</script>
 
 <template>
-    <footer>
+    <footer v-if="displayFooter">
         <ul>
-            <li class="footer__item">
+            <li class="footer__item" @click="changeLayout('home')">
                 <img src="../../assets/images/home.svg" />
             </li>
             <li class="footer__item">
@@ -13,7 +19,7 @@
             <li class="footer__item">
                 <img src="../../assets/images/heart.svg" />
             </li>
-            <li class="footer__item">
+            <li class="footer__item" @click="changeLayout('profile')">
                 <img src="../../assets/images/profile.svg" />
             </li>
         </ul>

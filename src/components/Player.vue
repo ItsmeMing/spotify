@@ -113,7 +113,11 @@
     justify-content: space-between;
     align-items: center;
     margin: 20px 0 50px 0;
+    @media screen and (max-width: 380px) {
+        margin: 10px 0 20px 0;
+    }
     div {
+        text-align: left;
         > * {
             font-size: 20px;
             line-height: 27px;
@@ -150,6 +154,9 @@ input {
     align-items: center;
     gap: 30px;
     margin: 45px 0 35px 0;
+    @media screen and (max-width: 380px) {
+        margin: 15px 0 20px 0;
+    }
     svg {
         cursor: pointer;
         &:hover {

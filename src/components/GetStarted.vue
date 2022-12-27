@@ -1,6 +1,5 @@
 <script setup>
 import Button from "./Button.vue";
-
 </script>
 
 <template>
@@ -10,7 +9,7 @@ import Button from "./Button.vue";
         purus sed phasellus. Cursus ornare id scelerisque aliquam.
     </p>
     <Button
-    fontSize="22px"
+        fontSize="22px"
         width="100%"
         height="92px"
         className="btn-green"

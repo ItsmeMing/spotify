@@ -147,7 +147,7 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
     }
 }
 .playlist {
-    margin: 25px -20px 30px 0;
+    margin: 25px -20px 105px 0;
     padding-right: 20px;
     height: 105px;
     overflow: auto;

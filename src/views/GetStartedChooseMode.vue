@@ -11,6 +11,7 @@ const router = useRouter();
 const imageUrl = ref("ArianaGrande");
 const childContent = shallowRef(GetStarted);
 
+
 const handleContent = () => {
     imageUrl.value = "Wallpaper1";
     childContent.value = ChooseMode;
@@ -27,7 +28,7 @@ provide("goToAuth", goToAuth);
         <figure class="big-logo">
             <img src="../assets/images/logo.png" />
         </figure>
-        <Content contentId="content">
+        <Content contentId="content" className="absolute bottom-center" marginBottom="70px">
             <childContent />
         </Content>
     </RootComponent>
