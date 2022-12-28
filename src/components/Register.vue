@@ -5,6 +5,7 @@ import RegisterSignIn from "./RegisterSignIn.vue";
 import Input from "./Input.vue";
 import Button from "./Button.vue";
 
+const theme = inject("theme")
 const handleContent = inject("handleContent");
 </script>
 
@@ -14,9 +15,9 @@ const handleContent = inject("handleContent");
         footerText="Do You Have An Account?"
         swapBtn="Sign In"
     >
-        <Input type="text" placeholder="Full Name" />
-        <Input type="email" placeholder="Enter Email" />
-        <Input type="password" placeholder="Password" />
+        <Input type="text" placeholder="Full Name" :className="theme.className"/>
+        <Input type="email" placeholder="Enter Email" :className="theme.className"/>
+        <Input type="password" placeholder="Password" :className="theme.className"/>
         <Button
             fontSize="20px"
             width="100%"

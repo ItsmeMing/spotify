@@ -1,26 +1,25 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-
+import {inject} from "vue";
 import PlayBtn from "./header-btns/PlayBtn.vue";
+
+const theme = inject("theme");
 </script>
 
 <template>
     <div class="song">
         <div class="song__image">
             <img src="../assets/images/billie-eilish-3.png" />
-            <PlayBtn :width="28" :height="28" imgClass="img-big" />
+            <PlayBtn :width="28" :height="28"/>
         </div>
-        <h1 class="song__name">Bad Guy</h1>
-        <p class="song__artist">Billie Eilish</p>
-    </div>  
+        <h1 :class="`song__name ${theme.className}`">Bad Guy</h1>
+        <p :class="`song__artist ${theme.className}`">Billie Eilish</p>
+    </div>
 </template>
 
 <style scoped lang="scss">
 .song {
     padding-bottom: 10px;
-    > * {
-        color: var(--white);
-    }
     .song__image {
         position: relative;
         width: 147px;
@@ -38,7 +37,6 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
             width: 10.8px;
             height: auto;
             padding: 10px;
-            background-color: var(--gray-dark);
             transform: translate(-100%, -50%);
             border-radius: 100%;
         }

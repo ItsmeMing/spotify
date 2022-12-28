@@ -1,30 +1,25 @@
 <script setup>
+import {inject} from "vue";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Button from "../Button.vue";
 
 defineProps(["width", "height", "imgClass"]);
+
+const theme = inject("theme");
 </script>
 
 <template>
     <Button
         :width="width + 'px'"
         :height="height + 'px'"
-        className="btn-gray-background"
+        :className="`btn-gray-background ${theme.className}`"
         borderRadius="100%"
     >
-        <img
-            src="../../assets/images/play.png"
-            :style="{width: width / 2 + 'px', height: height / 2 + 'px'}"
+        <FontAwesomeIcon
+            icon="fa-solid fa-play"
+            :style="{fontSize: width / 2 + 'px', color: theme.playBtnColor}"
         />
     </Button>
 </template>
 
-<style scoped lang="scss">
-.img-small {
-    height: 14px;
-    width: auto;
-}
-.img-big {
-    height: 17px;
-    width: auto;
-}
-</style>
+<style scoped lang="scss"></style>

@@ -1,17 +1,18 @@
 <script setup>
-import { inject } from "vue";
+import {inject} from "vue";
 import Button from "./Button.vue";
 
 const btnWidth = (5 / 11) * 100;
-const handleContent = inject("handleContent")
+const theme = inject("theme");
+const handleContent = inject("handleContent");
 </script>
 
 <template>
     <figure class="logo">
-        <img src="../assets/images/logo.png"/>
+        <img src="../assets/images/logo.png" />
     </figure>
-    <h1>Enjoy Listening To Music</h1>
-    <p>
+    <h1 :class="theme.className">Enjoy Listening To Music</h1>
+    <p :class="theme.className">
         Spotify is a proprietary Swedish audio streaming and media services
         provider
     </p>
@@ -30,7 +31,7 @@ const handleContent = inject("handleContent")
             fontSize="19px"
             :width="btnWidth + '%'"
             height="75px"
-            className="btn-transparent"
+            :className="`btn-transparent ${theme.className}`"
             borderRadius="30px"
             signal="goToSignIn"
             @goToSignIn="handleContent('signin')"

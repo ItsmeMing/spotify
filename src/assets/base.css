@@ -25,3 +25,11 @@ body {
 button {
     cursor: pointer;
 }
+
+h1.dark, h2.dark, h6.dark, p.dark {
+    color: var(--white);
+}
+
+h1.light, h2.light, h6.light, p.light {
+    color: var(--dark);
+}

@@ -1,4 +1,15 @@
-<script setup></script>
+<script setup>
+import {ref, provide, onMounted} from "vue";
+import {useThemeStore} from "./stores/theme";
+
+const store = useThemeStore();
+const theme = ref();
+
+provide("theme", theme);
+onMounted(() => {
+    theme.value = store.detectUsersChoice();
+});
+</script>
 
 <template>
     <router-view></router-view>

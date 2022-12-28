@@ -4,6 +4,7 @@ import RegisterSignIn from "./RegisterSignIn.vue";
 import Input from "./Input.vue";
 import Button from "./Button.vue";
 
+const theme = inject("theme")
 const handleContent = inject("handleContent");
 </script>
 
@@ -13,8 +14,8 @@ const handleContent = inject("handleContent");
         footerText="Not A Member?"
         swapBtn="Register Now"
     >
-        <Input type="text" placeholder="Enter Username Or Email" />
-        <Input type="password" placeholder="Password" />
+        <Input type="text" placeholder="Enter Username Or Email" :className="theme.className"/>
+        <Input type="password" placeholder="Password" :className="theme.className"/>
         <p>Recovery Password</p>
         <Button
             fontSize="20px"

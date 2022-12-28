@@ -1,13 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-defineProps(["contentId", "className", "marginBottom"]);
+defineProps(["contentId", "className", "marginBottom", "height"]);
 </script>
 
 <template>
     <div
         :id="contentId"
         :class="className"
-        :style="{marginBottom: marginBottom}"
+        :style="{marginBottom: marginBottom, height: height}"
     >
         <slot></slot>
     </div>
@@ -16,9 +16,11 @@ defineProps(["contentId", "className", "marginBottom"]);
 <style lang="scss">
 #content {
     position: relative;
-    z-index: 4;
+    z-index: 2;
     text-align: center;
     margin: 0 auto;
+    overflow: auto;
+    scrollbar-width: none;
 }
 
 #content.absolute {
@@ -29,5 +31,9 @@ defineProps(["contentId", "className", "marginBottom"]);
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 </style>

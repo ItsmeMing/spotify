@@ -5,30 +5,32 @@ import Button from "./Button.vue";
 
 defineProps(["authHeader", "footerText", "swapBtn"]);
 
+const theme = inject("theme");
 const handleContent = inject("handleContent");
 </script>
 
 <template>
     <header>
-        <h1>{{ authHeader }}</h1>
-        <p>If You Need Any Support <span>Click Here</span></p>
+        <h1 :class="theme.className">{{ authHeader }}</h1>
+        <p :class="theme.className">If You Need Any Support <span>Click Here</span></p>
     </header>
     <div class="input-wrapper">
         <slot></slot>
     </div>
     <footer>
-        <h2>Or</h2>
+        <h2 :class="theme.className">Or</h2>
         <div>
             <img src="../assets/images/google.png" />
             <img src="../assets/images/apple.png" />
         </div>
         <section>
-            <p>
+            <h6 :class="theme.className">
                 {{ footerText }}
-            </p>
+            </h6>
             <Button
                 v-if="swapBtn === 'Register Now'"
                 fontSize="14px"
+                height="14px"
                 className="btn-blue-text"
                 signal="goToRegister"
                 @goToRegister="handleContent('register')"
@@ -37,6 +39,7 @@ const handleContent = inject("handleContent");
             <Button
                 v-else-if="swapBtn === 'Sign In'"
                 fontSize="14px"
+                height="14px"
                 className="btn-blue-text"
                 signal="goToSignIn"
                 @goToSignIn="handleContent('signin')"
@@ -51,13 +54,11 @@ header {
     h1 {
         font-weight: 700;
         font-size: 30px;
-        color: var(--white);
         margin: 50px 0 20px 0;
     }
     p {
         font-weight: 400;
         font-size: 12px;
-        color: var(--white);
         span {
             color: var(--green);
             cursor: pointer;
@@ -79,7 +80,6 @@ footer {
         font-weight: 400;
         font-size: 12px;
         width: 100%;
-        color: var(--white);
         &::before {
             content: "";
             position: absolute;
@@ -121,10 +121,9 @@ footer {
         align-items: center;
         justify-content: center;
         margin-bottom: 50px;
-        p {
+        h6 {
             font-weight: 700;
             font-size: 14px;
-            color: var(--white);
         }
     }
 }

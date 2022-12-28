@@ -40,7 +40,7 @@ const layouts = ref({
     },
 });
 
-const layoutKey = ref("player");
+const layoutKey = ref("home");
 
 const choseLayout = computed(() => layouts.value[layoutKey.value]);
 
@@ -50,7 +50,7 @@ provide("changeLayout", changeLayout);
 </script>
 
 <template>
-    <RootComponent backgroundColor="#1C1B1B">
+    <RootComponent>
         <Header
             :headerClassName="choseLayout.headerClassName"
             :leftBtn="choseLayout.leftBtn"

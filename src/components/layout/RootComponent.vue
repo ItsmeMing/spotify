@@ -1,12 +1,13 @@
 <script setup>
-import {ref, computed} from "vue";
+import {ref, computed, inject} from "vue";
 import ArianaGrande from "../../assets/images/ariana-grande.png";
 import Wallpaper1 from "../../assets/images/wallpaper-1.png";
-const props = defineProps(["backgroundColor", "imageUrl", "justifyContent"]);
 
+const props = defineProps(["imageUrl", "justifyContent"]);
 const images = ref({ArianaGrande: ArianaGrande, Wallpaper1: Wallpaper1});
 const image = computed(() => images.value[props.imageUrl]);
 // new URL(`../assets/images/${image.value}.png`, import.meta.url).href;
+const theme = inject("theme");
 </script>
 
 <template>
@@ -14,7 +15,7 @@ const image = computed(() => images.value[props.imageUrl]);
         class="container"
         :style="{
             backgroundImage: `url(${image})`,
-            backgroundColor: backgroundColor,
+            backgroundColor: theme?.bgColor,
         }"
     >
         <slot></slot>
@@ -28,7 +29,6 @@ const image = computed(() => images.value[props.imageUrl]);
     height: inherit;
     background-size: cover;
     background-repeat: no-repeat;
-    overflow-y: auto;
     scrollbar-width: none;
     > * {
         width: calc(11 / 13 * 100%);

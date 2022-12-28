@@ -1,10 +1,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-defineProps(["type", "placeholder"]);
+defineProps(["type", "placeholder", "className"]);
 </script>
 
 <template>
-    <input :type="type" :placeholder="placeholder" />
+    <input :type="type" :placeholder="placeholder" :class="className" />
 </template>
 
 <style scoped lang="scss">
@@ -15,12 +15,23 @@ input {
     width: calc(100% - 60px);
     height: 80px;
     padding: 0 29px;
-    border: 1px solid var(--gray-soft);
+    border: 2px solid var(--gray-soft);
     border-radius: 30px;
     background-color: transparent;
+}
+input.dark {
+    color: var(--white);
     &:focus-visible {
         outline: none;
         border-color: var(--white);
+    }
+}
+
+input.light {
+    color: #000000;
+    &:focus-visible {
+        outline: none;
+        border-color: #000000;
     }
 }
 ::placeholder {

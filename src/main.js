@@ -23,8 +23,9 @@ import {
     faEllipsis,
     faEllipsisVertical,
     faMagnifyingGlass,
+    faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faEllipsis, faEllipsisVertical, faMagnifyingGlass);
+library.add(faEllipsis, faEllipsisVertical, faMagnifyingGlass, faPlay);
 
 app.component("FontAwesomeIcon", FontAwesomeIcon).mount("#app");

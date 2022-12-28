@@ -1,10 +1,12 @@
 <script setup>
 import Content from "./layout/Content.vue";
 import Player from "./Player.vue";
+
+const contentHeight = window.innerHeight - 115;
 </script>
 
 <template>
-    <Content>
+    <Content contentId="content" :height="`${contentHeight}px`">
         <figure class="song__image">
             <img src="../assets/images/billie-eilish-3.png" />
         </figure>

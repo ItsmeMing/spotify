@@ -79,16 +79,22 @@ button {
 }
 
 .btn-transparent {
-    color: var(--white);
     font-weight: 700;
     background-color: transparent;
     &:hover {
-        background-color: var(--green);
+        color: var(--green) !important;
         border-color: var(--green);
     }
 }
 
-.btn-transparent-no-effect {
+.btn-transparent.dark {
+    color: var(--white);
+}
+.btn-transparent.light {
+    color: var(--dark);
+}
+
+.btn-transparent.no-effect {
     color: var(--white);
     font-weight: 700;
     background-color: transparent;
@@ -100,11 +106,17 @@ button {
 }
 
 .btn__circle-blur {
-    background: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(43.5px);
     &:hover {
         background: palevioletred;
     }
+}
+
+.btn__circle-blur.dark {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.btn__circle-blur.light {
+    background: rgba(0, 0, 0, 0.04);
 }
 
 .btn__circle-blur.selected {
@@ -118,7 +130,11 @@ button {
     background-color: transparent;
 }
 
-.btn-gray-background {
+.btn-gray-background.dark {
     background-color: var(--gray-dark);
+}
+
+.btn-gray-background.light {
+    background-color: var(--gray-soft);
 }
 </style>

@@ -9,6 +9,7 @@ import Register from "../components/Register.vue";
 import SignIn from "../components/SignIn.vue";
 import Header from "../components/layout/Header.vue";
 
+
 const router = useRouter();
 const childContent = shallowRef(AuthIntroduction);
 const contentClass = ref("");
@@ -30,7 +31,7 @@ provide("handleContent", handleContent);
 </script>
 
 <template>
-    <RootComponent backgroundColor="#1C1B1B">
+    <RootComponent>
         <Header
             leftBtn="goBackBtn"
             centerBtn="logo"

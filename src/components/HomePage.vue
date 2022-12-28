@@ -1,13 +1,17 @@
 <script setup>
+import { inject } from "vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Content from "./layout/Content.vue";
 import NewSong from "./NewSong.vue";
 import Song from "./Song.vue";
 import PlayBtn from "./header-btns/PlayBtn.vue";
+
+const contentHeight = window.innerHeight - 75 - 70 - 80;
+const theme = inject("theme")
 </script>
 
 <template>
-    <Content>
+    <Content contentId="content" :height="`${contentHeight}px`">
         <section class="new-album">
             <div>
                 <h4>New Album</h4>
@@ -18,10 +22,10 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
         </section>
         <nav class="menu">
             <ul>
-                <li class="menu__item"><p class="selected">News</p></li>
-                <li class="menu__item"><p>Video</p></li>
-                <li class="menu__item"><p>Artists</p></li>
-                <li class="menu__item"><p>Podcasts</p></li>
+                <li class="menu__item"><p :class="`${theme.className} selected`">News</p></li>
+                <li class="menu__item"><p :class="`${theme.className}`">Video</p></li>
+                <li class="menu__item"><p :class="`${theme.className}`">Artists</p></li>
+                <li class="menu__item"><p :class="`${theme.className}`">Podcasts</p></li>
             </ul>
         </nav>
         <ul class="product-list">
@@ -30,8 +34,8 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
             </li>
         </ul>
         <div class="playlist-heading">
-            <h1>Playlist</h1>
-            <p>See more</p>
+            <h1 :class="theme.className">Playlist</h1>
+            <p :class="theme.className">See more</p>
         </div>
         <ul class="playlist">
             <li class="playlist__item" v-for="n in 10" :key="n">
@@ -40,7 +44,7 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
                         <PlayBtn :width="34" :height="34" imgClass="img-big" />
                     </template>
                     <template v-slot:right-btn>
-                        <FontAwesomeIcon icon="fa-solid fa-ellipsis" />
+                        <FontAwesomeIcon icon="fa-solid fa-ellipsis" :style="{color: theme.searchBtnColor}"/>
                     </template>
                 </Song>
             </li>
@@ -92,7 +96,6 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
                 position: relative;
                 font-weight: 700;
                 font-size: 20px;
-                color: var(--white);
                 width: fit-content;
                 cursor: pointer;
                 &::before,
@@ -134,9 +137,6 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
     justify-content: space-between;
     align-items: center;
     margin-top: 30px;
-    > * {
-        color: var(--white);
-    }
     h1 {
         font-weight: 700;
         font-size: 20px;
@@ -148,11 +148,8 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
 }
 .playlist {
     margin: 25px -20px 30px 0;
-    @media screen and (max-width: 380px) {
-        margin-bottom: 105px;
-    }
     padding-right: 20px;
-    height: 18vh;
+    height: 20vh;
     overflow: auto;
     .playlist__item {
         margin-bottom: 20px;
