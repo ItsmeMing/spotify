@@ -6,7 +6,7 @@ import NewSong from "./NewSong.vue";
 import Song from "./Song.vue";
 import PlayBtn from "./header-btns/PlayBtn.vue";
 
-const contentHeight = window.innerHeight - 75 - 70 - 80;
+const contentHeight = window.innerHeight - 75;
 const theme = inject("theme")
 </script>
 
@@ -56,7 +56,7 @@ const theme = inject("theme")
 .new-album {
     position: relative;
     z-index: 3;
-    margin-top: 30px;
+    margin-top: 77px;
     background-color: var(--green);
     border-radius: 30px;
     div {

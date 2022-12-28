@@ -6,7 +6,7 @@ export const useThemeStore = defineStore("theme", {
             light: {
                 className: "light",
                 bgColor: "#FFFFFF",
-                darkerBgColor: "#F5F5F5",
+                secondBgColor: "#e7e5e5",
                 goBackBtnColor: "#414141",
                 searchBtnColor: "#070707",
                 playBtnColor: "#2c2c2c",
@@ -14,7 +14,7 @@ export const useThemeStore = defineStore("theme", {
             dark: {
                 className: "dark",
                 bgColor: "#1C1B1B",
-                darkerBgColor: "#070707",
+                secondBgColor: "#2C2B2B",
                 goBackBtnColor: "#dddddd",
                 searchBtnColor: "#ffffff",
                 playBtnColor: "#797979",

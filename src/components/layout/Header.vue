@@ -6,18 +6,17 @@ import SearchBtn from "../header-btns/SearchBtn.vue";
 import Logo from "../header-btns/Logo.vue";
 import NowPlaying from "../NowPlaying.vue";
 
-const props = defineProps([
+defineProps([
     "leftBtn",
     "centerBtn",
     "displayOptionsBtn",
-    "headerClassName",
 ]);
 
 const theme = inject("theme")
 </script>
 
 <template>
-    <header id="header" :class="props.headerClassName">
+    <header id="header">
         <div v-if="leftBtn === 'searchBtn'">
             <SearchBtn />
         </div>
@@ -45,13 +44,15 @@ const theme = inject("theme")
 
 <style lang="scss">
 #header {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 3;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 40px !important;
-    margin-bottom: 40px !important;
     div {
         flex: 1;
         display: flex;
@@ -70,11 +71,5 @@ const theme = inject("theme")
             cursor: pointer;
         }
     }
-}
-#header.absolute {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
 }
 </style>

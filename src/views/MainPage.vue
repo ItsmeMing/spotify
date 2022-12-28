@@ -10,6 +10,7 @@ import Footer from "../components/layout/Footer.vue";
 
 const layouts = ref({
     home: {
+        secondBg: false,
         leftBtn: "searchBtn",
         centerBtn: "logo",
         displayOptionsBtn: true,
@@ -17,6 +18,7 @@ const layouts = ref({
         displayFooter: true,
     },
     player: {
+        secondBg: false,
         leftBtn: "goBackBtn",
         centerBtn: "nowPlaying",
         displayOptionsBtn: true,
@@ -24,7 +26,7 @@ const layouts = ref({
         displayFooter: false,
     },
     profile: {
-        headerClassName: "absolute",
+        secondBg: true,
         leftBtn: "goBackBtn",
         centerBtn: "",
         displayOptionsBtn: true,
@@ -32,7 +34,7 @@ const layouts = ref({
         displayFooter: true,
     },
     artist: {
-        headerClassName: "absolute",
+        secondBg: false,
         leftBtn: "goBackBtn",
         displayOptionsBtn: true,
         mainContent: "artistpage",
@@ -40,7 +42,7 @@ const layouts = ref({
     },
 });
 
-const layoutKey = ref("home");
+const layoutKey = ref("artist");
 
 const choseLayout = computed(() => layouts.value[layoutKey.value]);
 
@@ -50,9 +52,8 @@ provide("changeLayout", changeLayout);
 </script>
 
 <template>
-    <RootComponent>
+    <RootComponent :secondBg="choseLayout.secondBg">
         <Header
-            :headerClassName="choseLayout.headerClassName"
             :leftBtn="choseLayout.leftBtn"
             :centerBtn="choseLayout.centerBtn"
             :displayOptionsBtn="choseLayout.displayOptionsBtn"

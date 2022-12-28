@@ -3,7 +3,7 @@ import {ref, computed, inject} from "vue";
 import ArianaGrande from "../../assets/images/ariana-grande.png";
 import Wallpaper1 from "../../assets/images/wallpaper-1.png";
 
-const props = defineProps(["imageUrl", "justifyContent"]);
+const props = defineProps(["imageUrl", "justifyContent", "secondBg"]);
 const images = ref({ArianaGrande: ArianaGrande, Wallpaper1: Wallpaper1});
 const image = computed(() => images.value[props.imageUrl]);
 // new URL(`../assets/images/${image.value}.png`, import.meta.url).href;

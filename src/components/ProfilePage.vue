@@ -1,26 +1,30 @@
 <script setup>
+import {inject, computed} from "vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import Song from "./Song.vue";
+
+const theme = inject("theme");
+const textColor = computed(() => theme.value.className);
 </script>
 
 <template>
-    <section class="profile">
-        <h1>Profile</h1>
+    <section class="profile" :style="{backgroundColor: theme.secondBgColor}">
+        <h1 :class="textColor">Profile</h1>
         <img src="../assets/images/profile-image.png" />
         <p class="email">Soroushnorozyui@gmail.com</p>
-        <p class="name">Soroushnrz</p>
+        <p :class="`name ${textColor}`">Soroushnrz</p>
         <div class="social">
             <div class="social__item">
-                <h2>778</h2>
-                <p>Followers</p>
+                <h2 :class="textColor">778</h2>
+                <p :class="textColor">Followers</p>
             </div>
             <div class="social__item">
-                <h2>243</h2>
-                <p>Following</p>
+                <h2 :class="textColor">243</h2>
+                <p :class="textColor">Following</p>
             </div>
         </div>
     </section>
-    <h1 class="playlist__heading">PUBLIC PLAYLISTS</h1>
+    <h1 :class="`playlist__heading ${textColor}`">PUBLIC PLAYLISTS</h1>
     <ul class="playlist">
         <li class="playlist__item" v-for="n in 10" :key="n">
             <Song>
@@ -48,13 +52,11 @@ import Song from "./Song.vue";
     text-align: center;
     width: 100vw;
     margin-left: calc((100vw - 100%) * -0.5);
-    background-color: var(--gray-dark);
     border-radius: 0 0 66px 66px;
     h1 {
         font-weight: 700;
         font-size: 17px;
         line-height: 22.95px;
-        color: var(--white);
         padding-top: 45px;
         margin-bottom: 20px;
     }
@@ -74,17 +76,12 @@ import Song from "./Song.vue";
         font-weight: 700;
         font-size: 20px;
         line-height: 27px;
-        color: var(--white);
     }
     .social {
         display: flex;
         gap: 120px;
         justify-content: center;
         padding: 20px 0;
-        h2,
-        p {
-            color: var(--white);
-        }
         h2 {
             font-weight: 700;
             font-size: 20px;
@@ -101,7 +98,6 @@ import Song from "./Song.vue";
     font-weight: 700;
     font-size: 15px;
     line-height: 20.25px;
-    color: var(--white);
     margin: 20px auto;
 }
 .playlist {

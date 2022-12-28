@@ -1,5 +1,11 @@
+<script setup>
+import { inject } from 'vue';
+
+const theme = inject("theme")
+</script>
+
 <template>
-    <p>Now Playing</p>
+    <p :class="theme.className">Now Playing</p>
 </template>
 
 <style scoped lang="scss">

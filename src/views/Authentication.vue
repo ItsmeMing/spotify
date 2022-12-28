@@ -9,7 +9,6 @@ import Register from "../components/Register.vue";
 import SignIn from "../components/SignIn.vue";
 import Header from "../components/layout/Header.vue";
 
-
 const router = useRouter();
 const childContent = shallowRef(AuthIntroduction);
 const contentClass = ref("");
@@ -18,9 +17,11 @@ const showBillie = ref(true);
 const handleContent = (component) => {
     if (component === "register") {
         childContent.value = Register;
+        contentClass.value = "input";
         showBillie.value = false;
     } else if (component === "signin") {
         childContent.value = SignIn;
+        contentClass.value = "input";
         showBillie.value = false;
     } else {
         router.push({name: "main-page"});
