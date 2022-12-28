@@ -35,17 +35,5 @@ const image = computed(() => images.value[props.imageUrl]);
         margin: 0 auto;
         scrollbar-width: none;
     }
-    // #wrapper {
-    //     position: relative;
-    //     display: flex;
-    //     flex-direction: column;
-    //     height: 100vh !important;
-    //     overflow: auto;
-    //     //firefox
-    //     scrollbar-width: none;
-    // }
-}
-::-webkit-scrollbar {
-    display: none;
 }
 </style>

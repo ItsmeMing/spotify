@@ -1,8 +1,11 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
+import {inject} from "vue";
 import Button from "./Button.vue";
 
-defineProps(["authHeader", "footerText", "swapBtn", "swapTo"]);
+defineProps(["authHeader", "footerText", "swapBtn"]);
+
+const handleContent = inject("handleContent");
 </script>
 
 <template>
@@ -23,9 +26,22 @@ defineProps(["authHeader", "footerText", "swapBtn", "swapTo"]);
             <p>
                 {{ footerText }}
             </p>
-            <Button fontSize="14px" className="btn-blue-text" :fnName="swapTo">{{
-                swapBtn
-            }}</Button>
+            <Button
+                v-if="swapBtn === 'Register Now'"
+                fontSize="14px"
+                className="btn-blue-text"
+                signal="goToRegister"
+                @goToRegister="handleContent('register')"
+                >{{ swapBtn }}</Button
+            >
+            <Button
+                v-else-if="swapBtn === 'Sign In'"
+                fontSize="14px"
+                className="btn-blue-text"
+                signal="goToSignIn"
+                @goToSignIn="handleContent('signin')"
+                >{{ swapBtn }}</Button
+            >
         </section>
     </footer>
 </template>

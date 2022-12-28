@@ -1,5 +1,8 @@
 <script setup>
+import {inject} from "vue";
 import Button from "./Button.vue";
+
+const goToChooseMode = inject("goToChooseMode");
 </script>
 
 <template>
@@ -14,7 +17,8 @@ import Button from "./Button.vue";
         height="92px"
         className="btn-green"
         borderRadius="30px"
-        fnName="goToChooseMode"
+        signal="goToChooseMode"
+        @goToChooseMode="goToChooseMode"
         >Get Started</Button
     >
 </template>

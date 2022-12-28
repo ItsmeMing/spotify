@@ -1,5 +1,9 @@
 <script setup>
+import { inject } from "vue";
 import Button from "./Button.vue";
+
+
+const goToAuth = inject("goToAuth");
 </script>
 
 <template>
@@ -11,7 +15,6 @@ import Button from "./Button.vue";
                 height="75px"
                 className="btn__circle-blur"
                 borderRadius="100%"
-                fnName="chooseDark"
                 ><img src="../assets/images/moon.png"
             /></Button>
             <h2>Dark mode</h2>
@@ -22,7 +25,6 @@ import Button from "./Button.vue";
                 height="75px"
                 className="btn__circle-blur"
                 borderRadius="100%"
-                fnName="chooseLight"
                 ><img src="../assets/images/sun.png"
             /></Button>
             <h2>Light mode</h2>
@@ -34,7 +36,8 @@ import Button from "./Button.vue";
         height="92px"
         className="btn-green"
         borderRadius="30px"
-        fnName="goToAuth"
+        signal="goToAuth"
+        @goToAuth="goToAuth"
         >Continue</Button
     >
 </template>

@@ -1,7 +1,9 @@
 <script setup>
+import { inject } from "vue";
 import Button from "./Button.vue";
 
 const btnWidth = (5 / 11) * 100;
+const handleContent = inject("handleContent")
 </script>
 
 <template>
@@ -20,7 +22,8 @@ const btnWidth = (5 / 11) * 100;
             height="75px"
             className="btn-green"
             borderRadius="30px"
-            fnName="goToRegister"
+            signal="goToRegister"
+            @goToRegister="handleContent('register')"
             >Register</Button
         >
         <Button
@@ -29,7 +32,8 @@ const btnWidth = (5 / 11) * 100;
             height="75px"
             className="btn-transparent"
             borderRadius="30px"
-            fnName="goToSignIn"
+            signal="goToSignIn"
+            @goToSignIn="handleContent('signin')"
             >Sign in</Button
         >
     </div>

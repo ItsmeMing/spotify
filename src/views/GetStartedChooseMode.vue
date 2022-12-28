@@ -1,5 +1,5 @@
 <script setup>
-import {ref, shallowRef, provide} from "vue";
+import {ref, provide} from "vue";
 import {useRouter} from "vue-router";
 import RootComponent from "../components/layout/RootComponent.vue";
 import Content from "../components/layout/Content.vue";
@@ -7,19 +7,17 @@ import GetStarted from "../components/GetStarted.vue";
 import ChooseMode from "../components/ChooseMode.vue";
 
 const router = useRouter();
-
 const imageUrl = ref("ArianaGrande");
-const childContent = shallowRef(GetStarted);
+const contentKey = ref("get-started");
 
-
-const handleContent = () => {
+const goToChooseMode = () => {
     imageUrl.value = "Wallpaper1";
-    childContent.value = ChooseMode;
+    contentKey.value = "choose-mode";
 };
 
 const goToAuth = () => router.push({name: "authentication"});
 
-provide("handleContent", handleContent);
+provide("goToChooseMode", goToChooseMode);
 provide("goToAuth", goToAuth);
 </script>
 
@@ -28,8 +26,13 @@ provide("goToAuth", goToAuth);
         <figure class="big-logo">
             <img src="../assets/images/logo.png" />
         </figure>
-        <Content contentId="content" className="absolute bottom-center" marginBottom="70px">
-            <childContent />
+        <Content
+            contentId="content"
+            className="absolute bottom-center"
+            marginBottom="70px"
+        >
+            <GetStarted v-if="contentKey === 'get-started'" />
+            <ChooseMode v-else />
         </Content>
     </RootComponent>
 </template>

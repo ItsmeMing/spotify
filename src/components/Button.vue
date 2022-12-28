@@ -1,52 +1,42 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import {inject, ref} from "vue";
-import {useRouter} from "vue-router";
-import Register from "./Register.vue";
-import SignIn from "./SignIn.vue";
-
 defineProps([
     "fontSize",
     "width",
     "height",
     "className",
     "borderRadius",
-    "fnName",
+    "signal",
 ]);
 
-const router = useRouter();
+const emits = defineEmits([
+    "goToChooseMode",
+    "goToAuth",
+    "goToRegister",
+    "goToSignIn",
+    "goToHomePage",
+]);
 
-const goToChooseMode = inject("handleContent");
-
-const goToAuth = inject("goToAuth");
-const goBackToGetStarted = () => {
-    router.push({name: "get-started"});
-};
-const childContent = inject("child-content");
-const contentClass = inject("content-class");
-const showBillie = inject("show-billie");
-const goToRegister = () => {
-    childContent.value = Register;
-    contentClass.value = "input";
-    showBillie.value = false;
-};
-
-const goToSignIn = () => {
-    childContent.value = SignIn;
-    contentClass.value = "input";
-    showBillie.value = false;
-};
-
-const fns = ref({
-    goToChooseMode: goToChooseMode,
-    goToAuth: goToAuth,
-    goBackToGetStarted: goBackToGetStarted,
-    goToRegister: goToRegister,
-    goToSignIn: goToSignIn,
-});
-const handleFunction = (name) => {
-    const fn = fns.value[name];
-    fn();
+const handleSignal = (s) => {
+    switch (s) {
+        case "goToChooseMode":
+            emits("goToChooseMode");
+            break;
+        case "goToAuth":
+            emits("goToAuth");
+            break;
+        case "goToRegister":
+            emits("goToRegister");
+            break;
+        case "goToSignIn":
+            emits("goToSignIn");
+            break;
+        case "goToHomePage":
+            emits("goToHomePage");
+            break;
+        default:
+            break;
+    }
 };
 </script>
 
@@ -59,7 +49,7 @@ const handleFunction = (name) => {
             height: height,
             borderRadius: borderRadius,
         }"
-        @click="handleFunction(fnName)"
+        @click="handleSignal(signal)"
     >
         <slot></slot>
     </button>

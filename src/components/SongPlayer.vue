@@ -43,7 +43,6 @@ figure {
 }
 div {
     text-align: center;
-    width: fit-content;
     margin: 0 auto 20px auto;
     cursor: pointer;
     p {

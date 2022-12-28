@@ -13,40 +13,38 @@ const layouts = ref({
         leftBtn: "searchBtn",
         centerBtn: "logo",
         displayOptionsBtn: true,
-        mainContent: HomePage,
+        mainContent: "homepage",
         displayFooter: true,
     },
     player: {
         leftBtn: "goBackBtn",
         centerBtn: "nowPlaying",
         displayOptionsBtn: true,
-        mainContent: SongPlayer,
+        mainContent: "songplayer",
         displayFooter: false,
     },
     profile: {
         headerClassName: "absolute",
         leftBtn: "goBackBtn",
+        centerBtn: "",
         displayOptionsBtn: true,
-        mainContent: ProfilePage,
+        mainContent: "profilepage",
         displayFooter: true,
     },
     artist: {
         headerClassName: "absolute",
         leftBtn: "goBackBtn",
         displayOptionsBtn: true,
-        mainContent: ArtistPage,
+        mainContent: "artistpage",
         displayFooter: true,
     },
 });
 
-const layoutKey = ref("home");
+const layoutKey = ref("player");
 
-const changeLayout = (value) => (layoutKey.value = value);
+const choseLayout = computed(() => layouts.value[layoutKey.value]);
 
-const choseLayout = computed(() => {
-    console.log(layouts.value[layoutKey.value]);
-    return layouts.value[layoutKey.value];
-});
+const changeLayout = (str) => (layoutKey.value = str);
 
 provide("changeLayout", changeLayout);
 </script>
@@ -59,7 +57,18 @@ provide("changeLayout", changeLayout);
             :centerBtn="choseLayout.centerBtn"
             :displayOptionsBtn="choseLayout.displayOptionsBtn"
         ></Header>
-        <choseLayout.mainContent />
+        <template v-if="choseLayout.mainContent === 'homepage'">
+            <HomePage />
+        </template>
+        <template v-else-if="choseLayout.mainContent === 'songplayer'">
+            <SongPlayer />
+        </template>
+        <template v-else-if="choseLayout.mainContent === 'profilepage'">
+            <ProfilePage />
+        </template>
+        <template v-else-if="choseLayout.mainContent === 'artistpage'">
+            <ArtistPage />
+        </template>
         <Footer :displayFooter="choseLayout.displayFooter" />
     </RootComponent>
 </template>

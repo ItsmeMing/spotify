@@ -16,6 +16,7 @@ body {
     min-height: 100vh;
     font-family: "Satoshi", sans-serif;
     font-size: 16px;
+    overflow: hidden;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

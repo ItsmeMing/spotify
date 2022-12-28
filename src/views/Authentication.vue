@@ -1,18 +1,32 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import {ref, shallowRef, provide} from "vue";
+import {useRouter} from "vue-router";
 import RootComponent from "../components/layout/RootComponent.vue";
 import Content from "../components/layout/Content.vue";
 import AuthIntroduction from "../components/AuthIntroduction.vue";
+import Register from "../components/Register.vue";
+import SignIn from "../components/SignIn.vue";
 import Header from "../components/layout/Header.vue";
 
+const router = useRouter();
 const childContent = shallowRef(AuthIntroduction);
 const contentClass = ref("");
 const showBillie = ref(true);
 
-provide("child-content", childContent);
-provide("content-class", contentClass);
-provide("show-billie", showBillie);
+const handleContent = (component) => {
+    if (component === "register") {
+        childContent.value = Register;
+        showBillie.value = false;
+    } else if (component === "signin") {
+        childContent.value = SignIn;
+        showBillie.value = false;
+    } else {
+        router.push({name: "main-page"});
+    }
+};
+
+provide("handleContent", handleContent);
 </script>
 
 <template>
@@ -24,7 +38,7 @@ provide("show-billie", showBillie);
         ></Header>
         <Content contentId="content" :className="contentClass">
             <childContent></childContent>
-        </Content>D
+        </Content>
         <img
             v-if="showBillie"
             id="billie"
@@ -35,7 +49,6 @@ provide("show-billie", showBillie);
 
 <style scoped lang="scss">
 #content {
-    height: inherit;
     margin-top: 110px;
     margin-bottom: 0;
 }

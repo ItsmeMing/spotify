@@ -1,6 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import {ref, computed} from "vue";
 import GoBackBtn from "../header-btns/GoBackBtn.vue";
 import SearchBtn from "../header-btns/SearchBtn.vue";
 import Logo from "../header-btns/Logo.vue";
@@ -12,29 +11,26 @@ const props = defineProps([
     "displayOptionsBtn",
     "headerClassName",
 ]);
-
-const leftBtnObj = ref({
-    goBackBtn: GoBackBtn,
-    searchBtn: SearchBtn,
-});
-
-const centerContentObj = ref({
-    logo: Logo,
-    nowPlaying: NowPlaying,
-});
-
-const leftBtnContent = computed(() => leftBtnObj.value[props.leftBtn]);
-const centerBtnContent = computed(
-    () => centerContentObj.value[props.centerBtn],
-);
 </script>
 
 <template>
     <header id="header" :class="props.headerClassName">
-        <div>
-            <leftBtnContent />
+        <div v-if="leftBtn === 'searchBtn'">
+            <SearchBtn />
         </div>
-        <div><centerBtnContent /></div>
+        <div v-else>
+            <GoBackBtn />
+        </div>
+        <div>
+            <div v-if="centerBtn === 'logo'">
+                <Logo />
+            </div>
+            <div v-else-if="centerBtn === 'nowPlaying'">
+                <NowPlaying />
+            </div>
+            <div v-else>
+            </div>
+        </div>
         <div>
             <FontAwesomeIcon
                 icon="fa-solid fa-ellipsis-vertical"
