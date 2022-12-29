@@ -1,18 +1,58 @@
+<!-- eslint-disable no-undef -->
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import {inject} from "vue";
+import {inject, onMounted} from "vue";
+import {useRouter} from "vue-router";
+import jwt_decode from "jwt-decode";
 import Button from "./Button.vue";
 
 defineProps(["authHeader", "footerText", "swapBtn"]);
 
+var CLIENT_ID =
+    "1073820467560-r4u4qs5rr0r1drad9pefg14n45v8t2qd.apps.googleusercontent.com";
+let tokenClient;
+
+const router = useRouter();
 const theme = inject("theme");
 const handleContent = inject("handleContent");
+
+const handleCallbackResponse = (res) => {
+    router.push({name: "main-page"});
+    console.log("Encoded JWT ID Token: ", res.credential);
+    var userObject = jwt_decode(res.credential);
+    console.log(userObject);
+    tokenClient.requestAccessToken();
+};
+
+onMounted(() => {
+    // global google
+    const google = window.google;
+    google.accounts.id.initialize({
+        client_id: CLIENT_ID,
+
+        callback: handleCallbackResponse,
+    });
+    google.accounts.id.renderButton(document.querySelector("#google"), {
+        theme: "outline",
+        size: "large",
+    });
+
+    tokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: CLIENT_ID,
+        scope: "profile email",
+        callback: (tokenResponse) => {
+            console.log(tokenResponse);
+        },
+    });
+});
 </script>
 
 <template>
     <header>
         <h1 :class="theme.className">{{ authHeader }}</h1>
-        <p :class="theme.className">If You Need Any Support <span>Click Here</span></p>
+        <p :class="theme.className">
+            If You Need Any Support <span>Click Here</span>
+        </p>
     </header>
     <div class="input-wrapper">
         <slot></slot>
@@ -22,6 +62,7 @@ const handleContent = inject("handleContent");
         <div>
             <img src="../assets/images/google.png" />
             <img src="../assets/images/apple.png" />
+            <div id="google"></div>
         </div>
         <section>
             <h6 :class="theme.className">

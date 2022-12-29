@@ -10,6 +10,7 @@ const handleUsersChoice = () => {
         theme.value = store.getLightTheme;
     else theme.value = store.getDarkTheme;
 };
+
 provide("theme", theme);
 provide("handleUsersChoice", handleUsersChoice);
 onMounted(() => {
