@@ -4,11 +4,15 @@ import {inject} from "vue";
 
 defineProps(["displayFooter"]);
 
+const theme = inject("theme");
 const changeLayout = inject("changeLayout");
 </script>
 
 <template>
-    <footer v-if="displayFooter">
+    <footer
+        v-if="displayFooter"
+        :style="{backgroundColor: theme.secondBgColor}"
+    >
         <ul>
             <li class="footer__item" @click="changeLayout('home')">
                 <img src="../../assets/images/home.svg" />

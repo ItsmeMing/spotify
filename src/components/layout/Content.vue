@@ -19,7 +19,7 @@ defineProps(["contentId", "className", "marginBottom", "height"]);
     z-index: 2;
     text-align: center;
     margin: 0 auto;
-    overflow: auto;
+    overflow-y: auto;
     scrollbar-width: none;
 }
 

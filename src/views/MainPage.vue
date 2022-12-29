@@ -42,7 +42,7 @@ const layouts = ref({
     },
 });
 
-const layoutKey = ref("artist");
+const layoutKey = ref("home");
 
 const choseLayout = computed(() => layouts.value[layoutKey.value]);
 
@@ -58,20 +58,16 @@ provide("changeLayout", changeLayout);
             :centerBtn="choseLayout.centerBtn"
             :displayOptionsBtn="choseLayout.displayOptionsBtn"
         ></Header>
-        <template v-if="choseLayout.mainContent === 'homepage'">
-            <HomePage />
-        </template>
-        <template v-else-if="choseLayout.mainContent === 'songplayer'">
-            <SongPlayer />
-        </template>
-        <template v-else-if="choseLayout.mainContent === 'profilepage'">
-            <ProfilePage />
-        </template>
-        <template v-else-if="choseLayout.mainContent === 'artistpage'">
-            <ArtistPage />
-        </template>
+        <Transition name="bounce">
+            <HomePage v-if="choseLayout.mainContent === 'homepage'" />
+            <SongPlayer v-else-if="choseLayout.mainContent === 'songplayer'" />
+            <ProfilePage
+                v-else-if="choseLayout.mainContent === 'profilepage'"
+            />
+            <ArtistPage v-else-if="choseLayout.mainContent === 'artistpage'" />
+        </Transition>
         <Footer :displayFooter="choseLayout.displayFooter" />
     </RootComponent>
 </template>
 
-<style scoped lang="scss"></style>
+<style lang="scss"></style>

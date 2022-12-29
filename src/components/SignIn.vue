@@ -30,6 +30,7 @@ const handleContent = inject("handleContent");
     </RegisterSignIn>
 </template>
 
+
 <style scoped lang="scss">
 p {
     font-weight: 700;

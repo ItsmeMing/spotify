@@ -23,11 +23,14 @@ onMounted(() => setTimeout(() => router.push({name: "get-started"}), 5000));
 
 <style scoped lang="scss">
 .logo {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
     img {
         display: block;
         width: 200px;
         height: auto;
-        margin: 40px auto 0 auto;
+        margin: 0 auto;
     }
 }
 </style>

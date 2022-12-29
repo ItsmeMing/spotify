@@ -15,6 +15,7 @@ const emits = defineEmits([
     "goToRegister",
     "goToSignIn",
     "goToHomePage",
+    "logIn",
 ]);
 
 const handleSignal = (s) => {
@@ -33,6 +34,9 @@ const handleSignal = (s) => {
             break;
         case "goToHomePage":
             emits("goToHomePage");
+            break;
+        case "logIn":
+            emits("logIn");
             break;
         default:
             break;
@@ -106,17 +110,10 @@ button {
 }
 
 .btn__circle-blur {
+    background: rgba(255, 255, 255, 0.04);
     &:hover {
         background: palevioletred;
     }
-}
-
-.btn__circle-blur.dark {
-    background: rgba(255, 255, 255, 0.04);
-}
-
-.btn__circle-blur.light {
-    background: rgba(0, 0, 0, 0.04);
 }
 
 .btn__circle-blur.selected {

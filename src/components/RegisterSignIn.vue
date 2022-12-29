@@ -51,6 +51,7 @@ const handleContent = inject("handleContent");
 
 <style scoped lang="scss">
 header {
+    margin-top: 70px;
     h1 {
         font-weight: 700;
         font-size: 30px;

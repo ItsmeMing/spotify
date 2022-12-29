@@ -12,7 +12,7 @@ input {
     font-family: "Satoshi", sans-serif;
     color: var(--white);
     font-size: 16px;
-    width: calc(100% - 60px);
+    width: calc(100% - (2/11 * 100%) - 2px);
     height: 80px;
     padding: 0 29px;
     border: 2px solid var(--gray-soft);

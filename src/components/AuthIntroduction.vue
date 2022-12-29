@@ -45,6 +45,7 @@ const handleContent = inject("handleContent");
     text-align: center;
 }
 figure {
+    margin-top: calc(13vh - 40px);
     img {
         display: block;
         width: 235px;
