@@ -3,25 +3,29 @@
 <script setup>
 import {inject, onMounted} from "vue";
 import {useRouter} from "vue-router";
+import {useTokensStore} from "../stores/tokens";
 import jwt_decode from "jwt-decode";
 import Button from "./Button.vue";
 
 defineProps(["authHeader", "footerText", "swapBtn"]);
-
+const tokensStore = useTokensStore();
+const router = useRouter();
 var CLIENT_ID =
     "1073820467560-r4u4qs5rr0r1drad9pefg14n45v8t2qd.apps.googleusercontent.com";
 let tokenClient;
 
-const router = useRouter();
+const SPOTIFY_AUTH_URL =
+    "https://accounts.spotify.com/authorize?client_id=83b2c91c728240a09e84343dba44933e&response_type=code&redirect_uri=http://localhost:5173/callback&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state&show_dialog=true";
+
 const theme = inject("theme");
 const handleContent = inject("handleContent");
 
-const handleCallbackResponse = (res) => {
-    router.push({name: "main-page"});
+const handleCallbackResponse = async (res) => {
     console.log("Encoded JWT ID Token: ", res.credential);
     var userObject = jwt_decode(res.credential);
     console.log(userObject);
     tokenClient.requestAccessToken();
+    router.push({name: "main-page"});
 };
 
 onMounted(() => {
@@ -41,7 +45,8 @@ onMounted(() => {
         client_id: CLIENT_ID,
         scope: "profile email",
         callback: (tokenResponse) => {
-            console.log(tokenResponse);
+            tokensStore.addToken("ggAccessToken", tokenResponse.access_token);
+            // window.location.href = SPOTIFY_AUTH_URL;
         },
     });
 });
