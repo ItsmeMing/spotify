@@ -58,14 +58,10 @@ provide("changeLayout", changeLayout);
             :centerBtn="choseLayout.centerBtn"
             :displayOptionsBtn="choseLayout.displayOptionsBtn"
         ></Header>
-        <Transition name="bounce">
-            <HomePage v-if="choseLayout.mainContent === 'homepage'" />
-            <SongPlayer v-else-if="choseLayout.mainContent === 'songplayer'" />
-            <ProfilePage
-                v-else-if="choseLayout.mainContent === 'profilepage'"
-            />
-            <ArtistPage v-else-if="choseLayout.mainContent === 'artistpage'" />
-        </Transition>
+        <HomePage v-if="choseLayout.mainContent === 'homepage'" />
+        <SongPlayer v-else-if="choseLayout.mainContent === 'songplayer'" />
+        <ProfilePage v-else-if="choseLayout.mainContent === 'profilepage'" />
+        <ArtistPage v-else-if="choseLayout.mainContent === 'artistpage'" />
         <Footer :displayFooter="choseLayout.displayFooter" />
     </RootComponent>
 </template>

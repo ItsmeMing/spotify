@@ -76,7 +76,7 @@ const theme = inject("theme");
 .new-album {
     position: relative;
     z-index: 3;
-    margin-top: 77px;
+    margin-top: 107px;
     background-color: var(--green);
     border-radius: 30px;
     div {
