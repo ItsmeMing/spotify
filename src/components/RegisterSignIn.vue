@@ -3,51 +3,49 @@
 <script setup>
 import {inject, onMounted} from "vue";
 import {useRouter} from "vue-router";
-import {useTokensStore} from "../stores/tokens";
 import jwt_decode from "jwt-decode";
 import Button from "./Button.vue";
 
 defineProps(["authHeader", "footerText", "swapBtn"]);
-const tokensStore = useTokensStore();
 const router = useRouter();
+
 var CLIENT_ID =
     "1073820467560-r4u4qs5rr0r1drad9pefg14n45v8t2qd.apps.googleusercontent.com";
-let tokenClient;
-
-const SPOTIFY_AUTH_URL =
-    "https://accounts.spotify.com/authorize?client_id=83b2c91c728240a09e84343dba44933e&response_type=code&redirect_uri=http://localhost:5173/callback&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state&show_dialog=true";
 
 const theme = inject("theme");
 const handleContent = inject("handleContent");
+
+const google = window.google;
 
 const handleCallbackResponse = async (res) => {
     console.log("Encoded JWT ID Token: ", res.credential);
     var userObject = jwt_decode(res.credential);
     console.log(userObject);
-    tokenClient.requestAccessToken();
-    router.push({name: "main-page"});
+    await tokenClient.requestAccessToken();
 };
+
+google.accounts.id.initialize({
+    client_id: CLIENT_ID,
+    callback: handleCallbackResponse,
+});
+
+const tokenClient = google.accounts.oauth2.initTokenClient({
+    client_id: CLIENT_ID,
+    scope: "profile email",
+    callback: (tokenResponse) => {
+        localStorage.setItem("ggAccessToken", tokenResponse.access_token);
+        localStorage.setItem("ggAccessTokenTimeReceived", Date.now());
+        setTimeout(() => router.push({name: "redirect"}), 2000);
+    },
+});
 
 onMounted(() => {
     // global google
-    const google = window.google;
-    google.accounts.id.initialize({
-        client_id: CLIENT_ID,
-
-        callback: handleCallbackResponse,
-    });
     google.accounts.id.renderButton(document.querySelector("#google"), {
+        type: "icon",
+        shape: "circle",
         theme: "outline",
         size: "large",
-    });
-
-    tokenClient = google.accounts.oauth2.initTokenClient({
-        client_id: CLIENT_ID,
-        scope: "profile email",
-        callback: (tokenResponse) => {
-            tokensStore.addToken("ggAccessToken", tokenResponse.access_token);
-            // window.location.href = SPOTIFY_AUTH_URL;
-        },
     });
 });
 </script>
@@ -60,14 +58,15 @@ onMounted(() => {
         </p>
     </header>
     <div class="input-wrapper">
-        <slot></slot>
+        <div>
+            <slot></slot>
+        </div>
     </div>
     <footer>
         <h2 :class="theme.className">Or</h2>
         <div>
-            <img src="../assets/images/google.png" />
-            <img src="../assets/images/apple.png" />
             <div id="google"></div>
+            <img src="../assets/images/apple.png" />
         </div>
         <section>
             <h6 :class="theme.className">
@@ -113,15 +112,18 @@ header {
     }
 }
 .input-wrapper {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    justify-content: center;
-    margin: 20px 0;
+    div {
+        display: flex;
+        gap: 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
 }
 
 footer {
-    margin-bottom: 60px;
+    margin-bottom: 7vh;
     h2 {
         position: relative;
         font-weight: 400;
@@ -153,7 +155,7 @@ footer {
         gap: 60px;
         align-items: center;
         justify-content: center;
-        margin: 50px 0;
+        margin: 2vh 0;
         img {
             width: 30px;
             height: auto;
@@ -167,7 +169,6 @@ footer {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 50px;
         h6 {
             font-weight: 700;
             font-size: 14px;

@@ -6,7 +6,23 @@ import RootComponent from "../components/layout/RootComponent.vue";
 
 const router = useRouter();
 
-onMounted(() => setTimeout(() => router.push({name: "get-started"}), 5000));
+onMounted(() =>
+    setTimeout(() => {
+        if (localStorage.getItem("ggAccessTokenTime") === null) {
+            const ggTokenTimeRemaining = localStorage.getItem(
+                "ggAccessTokenTimeReceived",
+            );
+            // const spotifyTokenTimeRemaining = localStorage.getItem(
+            //     "spotifyAccesssTokenTimeReceived",
+            // );
+            const now = Date.now()
+            if (Math.floor((now - ggTokenTimeRemaining)/ 1000) < 3600) {
+                router.push({name: "main-page"});
+            }
+            else router.push({name: "get-started"})
+        }
+    }, 5000),
+);
 </script>
 
 <template>

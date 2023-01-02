@@ -10,7 +10,7 @@ const contentHeight = window.innerHeight - 75;
 </script>
 
 <template>
-    <div id="wrapper" :style="{height: contentHeight + 'px'}">
+    <div id="content" :style="{height: contentHeight + 'px'}">
         <figure class="artist-img">
             <img src="../assets/images/billie-eilish-4.png" />
         </figure>
@@ -64,7 +64,7 @@ const contentHeight = window.innerHeight - 75;
 </template>
 
 <style scoped lang="scss">
-#wrapper {
+#content {
     overflow: auto;
     width: 100%;
     > *:not(.artist-img) {

@@ -33,7 +33,7 @@ const changeLayout = inject("changeLayout");
 <style scoped lang="scss">
 footer {
     position: absolute;
-    z-index: 3;
+    z-index: 4;
     bottom: 0;
     left: calc((100vw - 100%) * -0.5);
     width: 100vw;

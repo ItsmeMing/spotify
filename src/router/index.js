@@ -2,7 +2,7 @@ import {createRouter, createWebHistory} from "vue-router";
 import Loading from "../views/Loading.vue";
 import GetStartedChooseMode from "../views/GetStartedChooseMode.vue";
 import Authentication from "../views/Authentication.vue";
-import Callback from "../views/Callback.vue";
+import Redirect from "../views/Redirect.vue";
 import MainPage from "../views/MainPage.vue";
 
 const router = createRouter({
@@ -23,11 +23,7 @@ const router = createRouter({
             name: "authentication",
             component: Authentication,
         },
-        {
-            path: "/callback",
-            name: "callback",
-            component: Callback,
-        },
+        {path: "/redirect", name: "redirect", component: Redirect},
         {
             path: "/main-page",
             name: "main-page",
