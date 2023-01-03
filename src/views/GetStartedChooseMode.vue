@@ -19,6 +19,8 @@ const goToAuth = () => router.push({name: "authentication"});
 
 provide("goToChooseMode", goToChooseMode);
 provide("goToAuth", goToAuth);
+
+
 </script>
 
 <template>

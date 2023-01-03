@@ -25,6 +25,7 @@ const handleContent = (component) => {
 };
 
 provide("handleContent", handleContent);
+
 </script>
 
 <template>

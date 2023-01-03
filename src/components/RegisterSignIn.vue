@@ -2,12 +2,10 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import {inject, onMounted} from "vue";
-import {useRouter} from "vue-router";
 import jwt_decode from "jwt-decode";
 import Button from "./Button.vue";
 
 defineProps(["authHeader", "footerText", "swapBtn"]);
-const router = useRouter();
 
 var CLIENT_ID =
     "1073820467560-r4u4qs5rr0r1drad9pefg14n45v8t2qd.apps.googleusercontent.com";
@@ -33,9 +31,12 @@ const tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: "profile email",
     callback: (tokenResponse) => {
-        localStorage.setItem("ggAccessToken", tokenResponse.access_token);
-        localStorage.setItem("ggAccessTokenTimeReceived", Date.now());
-        setTimeout(() => router.push({name: "redirect"}), 2000);
+        localStorage.setItem("gg_access_token", tokenResponse.access_token);
+        localStorage.setItem("gg_access_token_time_received", Date.now());
+        setTimeout(
+            () => (window.location.href = "http://localhost:3000/login"),
+            2000,
+        );
     },
 });
 

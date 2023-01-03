@@ -1,5 +1,5 @@
 <script setup>
-import {ref, computed, provide, onMounted} from "vue";
+import {ref, computed, provide} from "vue";
 import RootComponent from "../components/layout/RootComponent.vue";
 import Header from "../components/layout/Header.vue";
 import HomePage from "../components/HomePage.vue";
@@ -7,6 +7,8 @@ import SongPlayer from "../components/SongPlayer.vue";
 import ProfilePage from "../components/ProfilePage.vue";
 import ArtistPage from "../components/ArtistPage.vue";
 import Footer from "../components/layout/Footer.vue";
+
+
 
 const layouts = ref({
     home: {
@@ -51,12 +53,6 @@ const changeLayout = (str) => (layoutKey.value = str);
 
 provide("changeLayout", changeLayout);
 
-onMounted(() => {
-    const url = window.location.search;
-    const ACCESS_TOKEN = new URLSearchParams(url).get("access_token");
-    localStorage.setItem("spotifyAccesssToken", ACCESS_TOKEN);
-    localStorage.setItem("spotifyAccesssTokenTimeReceived", Date.now());
-});
 </script>
 
 <template>
