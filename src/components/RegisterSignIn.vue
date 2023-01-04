@@ -30,9 +30,10 @@ google.accounts.id.initialize({
 const tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: "profile email",
+    // eslint-disable-next-line no-unused-vars
     callback: (tokenResponse) => {
-        localStorage.setItem("gg_access_token", tokenResponse.access_token);
-        localStorage.setItem("gg_access_token_time_received", Date.now());
+        // localStorage.setItem("gg_access_token", tokenResponse.access_token);
+        // localStorage.setItem("gg_access_token_time_received", Date.now());
         setTimeout(
             () => (window.location.href = "http://localhost:3000/login"),
             2000,

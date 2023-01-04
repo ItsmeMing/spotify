@@ -41,7 +41,7 @@ p.light {
 }
 
 header.dark {
-    background-color: var(--dark);
+    background-color: var(--gray-dark);
 }
 
 header.light {

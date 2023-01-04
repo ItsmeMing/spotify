@@ -1,21 +1,36 @@
 <script setup>
-import {computed, inject} from "vue";
+import {ref, computed, inject, onBeforeMount} from "vue";
+import {useDataStore} from "../stores/data";
 import PlayBtn from "./header-btns/PlayBtn.vue";
 import NewSong from "./NewSong.vue";
 import Song from "./Song.vue";
 
 const theme = inject("theme");
+const dataStore = useDataStore();
+const info = ref();
+const albums = ref();
+const topTracks = ref();
 const textColor = computed(() => theme.value.className);
 const contentHeight = window.innerHeight - 75;
+
+onBeforeMount(() => {
+    info.value = dataStore.getArtistsInfo;
+    albums.value = dataStore.getArtistsAlbums;
+    topTracks.value = dataStore.getArtistsTopTracks;
+    console.log(topTracks.value.tracks);
+});
 </script>
 
 <template>
     <div id="content" :style="{height: contentHeight + 'px'}">
         <figure class="artist-img">
-            <img src="../assets/images/billie-eilish-4.png" />
+            <img :src="info.images[0].url" />
         </figure>
-        <h1 :class="textColor">Billie Eilish</h1>
-        <h2 :class="`songs-count ${textColor}`">2 albums , 67 tracks</h2>
+        <h1 :class="textColor">{{ info.name }}</h1>
+        <h2 :class="`songs-count ${textColor}`">
+            Followers: {{ info.followers.total }}, Popularity:
+            {{ info.popularity }}
+        </h2>
         <p class="lorem">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis
             adipiscing vestibulum orci enim, nascetur vitae
@@ -23,16 +38,20 @@ const contentHeight = window.innerHeight - 75;
         <section class="albums-wrapper">
             <h2 :class="`album__header ${textColor}`">Albums</h2>
             <ul class="product-list">
-                <li class="product-item" v-for="n in 10" :key="n">
-                    <NewSong />
+                <li
+                    class="product-item"
+                    v-for="(album, key) in albums.items"
+                    :key="key"
+                >
+                    <NewSong :album="album" />
                 </li>
             </ul>
         </section>
         <section class="songs-wrapper">
             <h2 :class="`song__header ${textColor}`">Songs</h2>
             <ul class="playlist">
-                <li class="playlist__item" v-for="n in 10" :key="n">
-                    <Song>
+                <li class="playlist__item" v-for="(track, key) in topTracks.tracks" :key="key">
+                    <Song :track="track">
                         <template v-slot:left-btn>
                             <PlayBtn
                                 :width="34"

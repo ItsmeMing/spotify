@@ -1,33 +1,47 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import {inject} from "vue";
+import {useDataStore} from "../stores/data";
 import PlayBtn from "./header-btns/PlayBtn.vue";
 
+const props = defineProps(["song", "album"]);
+
+const dataStore = useDataStore();
 const theme = inject("theme");
+const changeLayout = inject("changeLayout");
+
+const goToArtistPage = async () => {
+    await dataStore.modifyArtist(props.song?.artists[0].id);
+    changeLayout("artist");
+};
+
 </script>
 
 <template>
     <div class="song">
         <div class="song__image">
-            <img src="../assets/images/billie-eilish-3.png" />
-            <PlayBtn :width="28" :height="28"/>
+            <img :src="song?.album.images[0].url || album?.images[0].url" />
+            <PlayBtn :width="28" :height="28" />
         </div>
-        <h1 :class="`song__name ${theme.className}`">Bad Guy</h1>
-        <p :class="`song__artist ${theme.className}`">Billie Eilish</p>
+        <h1 :class="`song__name ${theme.className}`">{{ song?.name || album?.name }}</h1>
+        <p :class="`song__artist ${theme.className}`" @click="goToArtistPage">
+            {{ song?.artists[0].name }}
+        </p>
     </div>
 </template>
 
 <style scoped lang="scss">
 .song {
     padding-bottom: 10px;
+    width: 147px;
     .song__image {
         position: relative;
-        width: 147px;
+        width: 100%;
         height: 185px;
         img {
             width: 100%;
             height: 100%;
-            object-fit: scale-down;
+            object-fit: cover;
             border-radius: 30px;
         }
         button {
@@ -43,7 +57,11 @@ const theme = inject("theme");
     }
     .song__name,
     .song__artist {
-        margin-left: 10px;
+        width: 90%;
+        margin: 0 auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .song__name {
         font-weight: 700;
@@ -55,6 +73,8 @@ const theme = inject("theme");
         font-weight: 400;
         font-size: 14px;
         line-height: 18.9px;
+        text-decoration: underline;
+        cursor: pointer;
     }
 }
 </style>

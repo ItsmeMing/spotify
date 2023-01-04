@@ -13,6 +13,9 @@ const handleUsersChoice = () => {
 
 provide("theme", theme);
 provide("handleUsersChoice", handleUsersChoice);
+
+
+
 onMounted(() => {
     theme.value = store.detectUsersChoice();
 });
@@ -30,5 +33,5 @@ onMounted(() => {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-}   
+}
 </style>
