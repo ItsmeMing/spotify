@@ -38,6 +38,7 @@ onBeforeUnmount(() => {
     z-index: 3;
     text-align: center;
     margin: 0 auto;
+    overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: none;
 }
