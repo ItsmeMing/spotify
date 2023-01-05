@@ -70,12 +70,16 @@ const checkToken = async () => {
                 localStorage.setItem("refresh_token", refresh_token);
             localStorage.setItem("created_at", created_at);
             await dataStore.addRandomSongs();
+            await dataStore.addUsersPlaylists();
+            await dataStore.addUsersInfo();
         } else {
             window.location.href = `http://localhost:3000/refresh_token?refresh_token=${lc_refresh_token}`;
         }
     } else if (lc_access_token !== null && lc_created_at !== null) {
         if ((Date.now() - lc_created_at) / 1000 < 3600) {
             await dataStore.addRandomSongs();
+            await dataStore.addUsersPlaylists();
+            await dataStore.addUsersInfo();
         } else {
             window.location.href = `http://localhost:3000/refresh_token?refresh_token=${lc_refresh_token}`;
         }

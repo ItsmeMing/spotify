@@ -9,6 +9,8 @@ import PlayBtn from "./header-btns/PlayBtn.vue";
 const dataStore = useDataStore();
 const contentHeight = window.innerHeight - 75;
 const theme = inject("theme");
+
+
 </script>
 
 <template>
@@ -43,7 +45,7 @@ const theme = inject("theme");
                 v-for="(song, key) in dataStore.getRandomSongs"
                 :key="key"
             >
-                <NewSong :song="song"/>
+                <NewSong :song="song" />
             </li>
         </ul>
         <div class="playlist-heading">
@@ -51,8 +53,12 @@ const theme = inject("theme");
             <p :class="theme.className">See more</p>
         </div>
         <ul class="playlist">
-            <li class="playlist__item" v-for="n in 10" :key="n">
-                <Song>
+            <li
+                class="playlist__item"
+                v-for="(playlist, key) in dataStore.getUsersPlaylists"
+                :key="key"
+            >
+                <Song :playlist="playlist">
                     <template v-slot:left-btn>
                         <PlayBtn :width="34" :height="34" imgClass="img-big" />
                     </template>

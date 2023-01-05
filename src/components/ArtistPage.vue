@@ -17,7 +17,6 @@ onBeforeMount(() => {
     info.value = dataStore.getArtistsInfo;
     albums.value = dataStore.getArtistsAlbums;
     topTracks.value = dataStore.getArtistsTopTracks;
-    console.log(topTracks.value.tracks);
 });
 </script>
 
@@ -37,7 +36,7 @@ onBeforeMount(() => {
         </p>
         <section class="albums-wrapper">
             <h2 :class="`album__header ${textColor}`">Albums</h2>
-            <ul class="product-list">
+            <ul class="product-list" v-if="albums.items.length !== 0">
                 <li
                     class="product-item"
                     v-for="(album, key) in albums.items"
@@ -46,6 +45,7 @@ onBeforeMount(() => {
                     <NewSong :album="album" />
                 </li>
             </ul>
+            <h1 style="color: white" v-else>This artist doesn't have any albums.</h1>
         </section>
         <section class="songs-wrapper">
             <h2 :class="`song__header ${textColor}`">Songs</h2>

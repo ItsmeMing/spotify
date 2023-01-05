@@ -1,36 +1,47 @@
 <script setup>
-import {inject, computed} from "vue";
+import {ref, inject, computed, onBeforeMount} from "vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {useDataStore} from "../stores/data";
 import Song from "./Song.vue";
 
+const dataStore = useDataStore();
+const info = ref();
 const theme = inject("theme");
 const textColor = computed(() => theme.value.className);
+
+onBeforeMount(() => {
+    info.value = dataStore.getUsersInfo;
+});
 </script>
 
 <template>
     <section class="profile" :style="{backgroundColor: theme.secondBgColor}">
         <h1 :class="textColor">Profile</h1>
-        <img src="../assets/images/profile-image.png" />
-        <p class="email">Soroushnorozyui@gmail.com</p>
-        <p :class="`name ${textColor}`">Soroushnrz</p>
+        <img :src="info?.images[0].url" />
+        <p class="email">{{ info?.email }}</p>
+        <p :class="`name ${textColor}`">{{ info?.display_name }}</p>
         <div class="social">
             <div class="social__item">
-                <h2 :class="textColor">778</h2>
+                <h2 :class="textColor">{{ info?.followers.total }}</h2>
                 <p :class="textColor">Followers</p>
             </div>
-            <div class="social__item">
+            <!-- <div class="social__item">
                 <h2 :class="textColor">243</h2>
                 <p :class="textColor">Following</p>
-            </div>
+            </div> -->
         </div>
     </section>
     <h1 :class="`playlist__heading ${textColor}`">PUBLIC PLAYLISTS</h1>
     <ul class="playlist">
-        <li class="playlist__item" v-for="n in 10" :key="n">
-            <Song>
+        <li
+            class="playlist__item"
+            v-for="(playlist, key) in dataStore.getUsersPlaylists"
+            :key="key"
+        >
+            <Song :playlist="playlist">
                 <template v-slot:left-btn>
                     <img
-                        src="../assets/images/billie-eilish-3.png"
+                        :src="playlist.images[0].url"
                         :style="{
                             width: '58px',
                             height: '56px',
@@ -40,7 +51,8 @@ const textColor = computed(() => theme.value.className);
                     />
                 </template>
                 <template v-slot:right-btn>
-                    <FontAwesomeIcon icon="fa-solid fa-ellipsis" />
+                    <FontAwesomeIcon icon="fa-solid fa-ellipsis" :style="{color:
+                    theme.searchBtnColor}"/>
                 </template>
             </Song>
         </li>
